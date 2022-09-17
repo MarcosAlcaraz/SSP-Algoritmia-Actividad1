@@ -4,36 +4,44 @@
 #include<iostream>
 #include<string>
 
-using namespace std;
-
 class Paquete
 {
 private:
-    int id;
-    int peso;
-    string origen;
-    string destino;
+    std::string id;
+    std::string peso;
+    std::string origen;
+    std::string destino;
+
+    Paquete* siguiente;
 public:
     Paquete();
-    ~Paquete();
+    Paquete(const Paquete&);
 
-    int getId() const;
-    int getPeso() const;
-    string getOrigen() const;
-    string getDestino() const;
+    std::string getId() const;
+    std::string getPeso() const;
+    std::string getOrigen() const;
+    std::string getDestino() const;
+    Paquete* getSiguiente() const;
 
-    void setId(const int&);
-    void setPeso(const int&);
-    void setOrigen(const string&);
-    void setDestino(const string&);
+    std::string print() const;
+
+    void setId(const std::string&);
+    void setPeso(const std::string&);
+    void setOrigen(const std::string&);
+    void setDestino(const std::string&);
+    void setSiguiente(Paquete*);
+
+    Paquete& operator = (const Paquete&);
+
+    bool operator == (const Paquete&) const;
+	bool operator != (const Paquete&) const;
+	bool operator < (const Paquete&) const;
+	bool operator <= (const Paquete&) const;
+	bool operator > (const Paquete&) const;
+	bool operator >= (const Paquete&) const;
+
+    // friend ostream& operator << (ostream&, const Paquete&);
+	// friend istream& operator >> (istream&, Paquete&);
 };
 
-Paquete::Paquete()
-{
-}
-
-Paquete::~Paquete()
-{
-}
-
-#endif // __PAQUETE_H__
+#endif // __Paquete_H__
