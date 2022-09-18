@@ -1,12 +1,10 @@
-#include <paqueteria.h>
+#include "paqueteria.h"
 #include <fstream>
 
 Paqueteria::Paqueteria()
 {
     anchor = nullptr;
 }
-
-Paqueteria::Paqueteria(const Paqueteria &x) : anchor(x.anchor) {}
 
 void Paqueteria::insertarAlInicio(Paquete &x)
 {
@@ -23,6 +21,7 @@ void Paqueteria::eliminarLista()
         delete anchor;
         anchor = aux;
     }
+    anchor = nullptr;
 }
 
 void Paqueteria::eliminarAlInicio()
@@ -38,10 +37,15 @@ void Paqueteria::mostrarLista()
 {
     Paquete *aux = anchor;
 
-    while (aux != nullptr)
+    if (anchor != nullptr)
     {
-        aux->print();
-        aux = aux->getSiguiente();
+        while (aux != nullptr)
+        {
+            aux->print();
+            aux = aux->getSiguiente();
+        }
+    } else {
+        std::cout << "\n\nNo hay nada que imprimir. - Lista Vacia.\n\n";
     }
 }
 
@@ -62,10 +66,11 @@ void Paqueteria::guardarLista()
 
 void Paqueteria::cargarLista()
 {
-    char x = NULL;
+    char x = '\0';
+
     if (anchor != nullptr)
     {
-        std::cout << "\nALERTA\nYa hay datos en su Lista. ¿Desea sobrescribir la lista actual? (s/n)\n: ";
+        std::cout << "\nALERTA\nYa hay datos en su Lista!\nDesea sobrescribir la lista actual? (s/n)\n: ";
         std::cin >> x;
 
         if (x == 115)
@@ -80,12 +85,9 @@ void Paqueteria::cargarLista()
 
     if (x != 187)
     {
-        Paquete *anterior;
-
         // Creando Buffers
         char texto[4096];
-        char dato[20];
-        bool firstTime = true;
+        char dato[64];
 
         // Puntero para la variable "texto"
         int tp = 0;
@@ -93,11 +95,11 @@ void Paqueteria::cargarLista()
         // Limpiando Buffers
         for (int i = 0; i < 4096; i++)
         {
-            texto[i] = NULL;
+            texto[i] = '\0';
         }
         for (int i = 0; i < 20; i++)
         {
-            dato[i] = NULL;
+            dato[i] = '\0';
         }
 
         // Se abre el archivo por defecto
@@ -105,9 +107,6 @@ void Paqueteria::cargarLista()
 
         // Obtiene la cantidad de caracteres que puede almacenar el Buffer
         file.getline(texto, 4096);
-
-        // Se establece Anterior como el primer nodo.
-        anterior = anchor;
 
         do
         {
@@ -140,21 +139,15 @@ void Paqueteria::cargarLista()
 
                 for (int i = 0; i < 20; i++)
                 {
-                    dato[i] = NULL;
+                    dato[i] = '\0';
                 }
-            }
+                insertarAlInicio(aux);
 
-            if (firstTime)
-            {
-                anchor = &aux;
-                firstTime = false;
+                aux.setId(NULL);
+                aux.setPeso(NULL);
+                aux.setOrigen(NULL);
+                aux.setDestino(NULL);
             }
-            else
-            {
-                anterior->setSiguiente(&aux);
-            }
-            anterior = &aux;
-
         } while (texto[tp] != 126);
     }
 }

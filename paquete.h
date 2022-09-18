@@ -15,15 +15,16 @@ private:
     Paquete* siguiente;
 public:
     Paquete();
+    //Paquete(std::string id, std::string peso, std::string getOrigen, std::string getDestino) : id(id), peso(peso), origen(origen), destino(destino) {};
 
     std::string getId() const;
     std::string getPeso() const;
     std::string getOrigen() const;
     std::string getDestino() const;
     Paquete* getSiguiente() const;
-
-    std::string print() const;
-
+    
+    void print() const;
+    
     void setId(const std::string&);
     void setPeso(const std::string&);
     void setOrigen(const std::string&);
@@ -31,16 +32,6 @@ public:
     void setSiguiente(Paquete*);
 
     Paquete& operator = (const Paquete&);
-
-    bool operator == (const Paquete&) const;
-	bool operator != (const Paquete&) const;
-	bool operator < (const Paquete&) const;
-	bool operator <= (const Paquete&) const;
-	bool operator > (const Paquete&) const;
-	bool operator >= (const Paquete&) const;
-
-    // friend ostream& operator << (ostream&, const Paquete&);
-	// friend istream& operator >> (istream&, Paquete&);
 };
 
 #endif // __Paquete_H__

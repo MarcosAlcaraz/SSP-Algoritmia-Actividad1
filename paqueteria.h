@@ -2,7 +2,7 @@
 #define __PAQUETERIA_H__
 
 #include<iostream>
-#include<paquete.h>
+#include"paquete.h"
 
 class Paqueteria
 {
@@ -10,14 +10,11 @@ private:
     Paquete* anchor;
 public:
     Paqueteria();
-    Paqueteria(const Paqueteria&);
 
     void insertarAlInicio(Paquete&);
-
     void eliminarLista();
     void eliminarAlInicio();
     void mostrarLista();
-
     void guardarLista();
     void cargarLista();
 };
