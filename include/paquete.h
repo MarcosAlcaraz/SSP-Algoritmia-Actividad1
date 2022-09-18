@@ -15,7 +15,6 @@ private:
     Paquete* siguiente;
 public:
     Paquete();
-    Paquete(const Paquete&);
 
     std::string getId() const;
     std::string getPeso() const;

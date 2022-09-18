@@ -2,7 +2,7 @@
 #define __PAQUETERIA_H__
 
 #include<iostream>
-#include<paquete.hpp>
+#include<paquete.h>
 
 class Paqueteria
 {

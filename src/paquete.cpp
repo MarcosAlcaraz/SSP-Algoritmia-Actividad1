@@ -1,11 +1,9 @@
-#include<paquete.hpp>
+#include<paquete.h>
 
 Paquete::Paquete()
 {
     siguiente = nullptr;
 }
-
-Paquete::Paquete(const Paquete& x) : id(x.id), peso(x.peso), origen(x.origen), destino(x.destino) {}
 
 std::string Paquete::getId() const
 {
